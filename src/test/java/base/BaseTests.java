@@ -24,6 +24,7 @@ public class BaseTests implements ITestListener  {
     protected SearchPage searchPage;
 
 
+
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("***** Error "+result.getName()+" test has failed *****");
