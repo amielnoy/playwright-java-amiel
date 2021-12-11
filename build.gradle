@@ -21,6 +21,7 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.1'
+    testImplementation 'commons-io:commons-io:2.8.0'
 }
 
 group = 'ivo.dimitrov'
@@ -31,6 +32,5 @@ sourceCompatibility = '11'
 
 test {
     useTestNG()
-    //useJUnitPlatform()
     maxParallelForks = 4
 }

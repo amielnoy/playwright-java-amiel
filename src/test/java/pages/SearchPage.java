@@ -1,7 +1,13 @@
 package pages;
-
+import org.apache.commons.io.FileUtils;
 import com.microsoft.playwright.Page;
 
+import java.io.File;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +27,17 @@ public class SearchPage {
 
     public SearchPage(Page page) {
         this.page = page;
+    }
+
+    public void takeScreenShot(String browserType){
+        page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("./ScreenShots/"  +browserType+".png")));
+    }
+
+    public void setVideoName(String newName) throws IOException {
+        Path videoFileSourcePath = Paths.get(String.valueOf(page.video().path()));
+        Path videoFileTargetPath=Paths.get("./video/"+newName+".webm");
+        Files.copy(videoFileSourcePath,videoFileTargetPath);
+        FileUtils.forceDelete(videoFileSourcePath.toFile());
     }
 
     public void search(String query) {
