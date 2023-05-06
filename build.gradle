@@ -20,6 +20,8 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.1'
     testImplementation 'commons-io:commons-io:2.8.0'
+    testImplementation project(path: ':')
+    testImplementation project(path: ':')
 }
 
 group = 'ivo.dimitrov'

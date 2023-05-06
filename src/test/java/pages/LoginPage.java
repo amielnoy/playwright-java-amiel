@@ -1,5 +1,6 @@
 package pages;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import org.apache.commons.io.FileUtils;
 
@@ -18,9 +19,9 @@ public class LoginPage {
 
     private Page page;
 
-    private String locator_username_edit = "#searchBar";
-    private String locator_password_edit = "li.ui-screen-hidden";
-    private String locator_login_button = "li:not(.ui-screen-hidden)";
+    private String locator_username_edit = "input[type=\"text\"]";
+    private String locator_password_edit = "input[type=\"password\"]";
+    private String locator_login_button = "sign in";
     private String locator_visibleBookTitles = "li:not(.ui-screen-hidden) h2";
 
 
@@ -39,29 +40,26 @@ public class LoginPage {
         FileUtils.forceDelete(videoFileSourcePath.toFile());
     }
 
-    public void setUserName(String username) {
-        //clearSearchBar();
-        page.fill(locator_username_edit, username);
+    public String setUserName(String username) {
+        Locator userNameLocator= page.locator(locator_username_edit);
+        userNameLocator.fill(username);
         //Log value
         var expectedState = new Page.WaitForSelectorOptions().setState(ATTACHED);
-        page.waitForSelector(locator_hiddenBooks, expectedState);
+        page.waitForSelector(locator_username_edit, expectedState);
+        return userNameLocator.inputValue();
     }
 
-    public void clearSearchBar() {
-        page.fill(locator_searchBar, "");
-
-        var expectedState = new Page.WaitForSelectorOptions().setState(DETACHED);
-        page.waitForSelector(locator_hiddenBooks, expectedState);
+    public String setPassword(String password){
+        Locator passwordLocator= page.locator(locator_password_edit);
+        passwordLocator.fill(password);
+        //Log value
+        var expectedState = new Page.WaitForSelectorOptions().setState(ATTACHED);
+        page.waitForSelector(locator_password_edit, expectedState);
+        return passwordLocator.inputValue();
     }
 
-    public int getNumberOfVisibleBooks() {
-        return page.querySelectorAll(locator_visibleBooks).size();
-    }
-
-    public List<String> getVisibleBooks() {
-        return page.querySelectorAll(locator_visibleBookTitles)
-                .stream()
-                .map(e -> e.innerText())
-                .collect(Collectors.toList());
+    public void clickLoginButton(){
+        Locator button_locator=page.getByText("sign in");
+        button_locator.click();
     }
 }
