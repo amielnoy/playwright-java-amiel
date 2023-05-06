@@ -21,7 +21,7 @@ dependencies {
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.1'
     testImplementation 'commons-io:commons-io:2.8.0'
     testImplementation project(path: ':')
-    testImplementation project(path: ':')
+    implementation 'io.qameta.allure:allure-testng:2.19.0'
 }
 
 group = 'ivo.dimitrov'
