@@ -1,7 +1,7 @@
 package utils.properties;
 
 import BuildingBlocks.LoginBuildingBlock;
-import base.BaseTests;
+import Tests.base.BaseTests;
 import com.microsoft.playwright.*;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -21,7 +21,7 @@ public class LoginToStagingSleep extends BaseTests {
     BrowserContext currContext;
     String nonSecretPropertiesFullPath,SecretPropertiesFullPath;
     String currTestName;
-    Page page;
+
 
     @BeforeClass
     public void setUp() {
