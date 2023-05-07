@@ -2,6 +2,7 @@ package pages;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 import org.apache.commons.io.FileUtils;
 
 import java.io.IOException;
@@ -11,8 +12,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static com.microsoft.playwright.options.WaitForSelectorState.ATTACHED;
-import static com.microsoft.playwright.options.WaitForSelectorState.DETACHED;
+
 
 
 public class LoginPage extends BasePage {
@@ -31,6 +33,8 @@ public class LoginPage extends BasePage {
     }
 
 
+
+    @Step("Setting user name")
     public String setUserName(String username) {
         Locator userNameLocator= page.locator(locator_username_edit);
         userNameLocator.fill(username);
@@ -40,6 +44,7 @@ public class LoginPage extends BasePage {
         return userNameLocator.inputValue();
     }
 
+    @Step("Setting Password")
     public String setPassword(String password){
         Locator passwordLocator= page.locator(locator_password_edit);
         passwordLocator.fill(password);
@@ -48,9 +53,10 @@ public class LoginPage extends BasePage {
         page.waitForSelector(locator_password_edit, expectedState);
         return passwordLocator.inputValue();
     }
-
+    @Step("Clicking SIGN IN BUTTON")
     public void clickLoginButton(){
         Locator button_locator=page.getByText("sign in");
         button_locator.click();
+        assertThat(page).hasTitle(DashBoardPage.getPageTitle());
     }
 }
