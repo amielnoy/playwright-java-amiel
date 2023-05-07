@@ -5,6 +5,10 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id "io.qameta.allure-report" version "latest.release"
+}
+allure {
+    version = "2.19.0"
 }
 
 repositories {
@@ -16,17 +20,24 @@ repositories {
 
 dependencies {
     implementation 'com.microsoft.playwright:playwright:1.33.0'
+    testImplementation 'io.qameta.allure:allure-testng:2.21.0'
     testImplementation 'org.testng:testng:7.7.0'
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.1'
     testImplementation 'commons-io:commons-io:2.8.0'
     testImplementation project(path: ':')
-    implementation 'io.qameta.allure:allure-testng:2.19.0'
+    testImplementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    testImplementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+    testImplementation group: 'io.qameta.allure', name: 'allure-attachments', version: '2.22.0'
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.19'
+    //testImplementation 'org.aspectj:aspectjweaver:1.9.19'
 }
 
 group = 'ivo.dimitrov'
 version = '1.0-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '13'
 
 
 
