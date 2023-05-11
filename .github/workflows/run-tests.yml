@@ -35,9 +35,5 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       
-#       - name: Test
-#         run: ./gradlew clean test  --info -Dheadless=false -Dbrowser=chrome
-      - name: Run Front End Tests
-        uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
-        with:
-          arguments: clean test --info -Dheadless=false -Dbrowser=chrome
+      - name: Test
+        run: ./gradlew clean test  --info -Dheadless=false -Dbrowser=chrome
