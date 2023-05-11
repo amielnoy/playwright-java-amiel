@@ -35,15 +35,13 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       
-      - name: Set up virtual X11
-        run: sudo apt-get install xvfb
+      - name: Build with Gradle
+        run: ./gradlew build -x test
       
-      - name: Start virtual frame buffer
-        run: Xvfb :19 -screen 0 1024x768x16 &
-      
-      - name: set display
-        run: export DISPLAY=:19
-      
+      - name: GUI tests
+        uses: GabrielBB/xvfb-action@v1
+        with:
+          run: ./gradlew tests      
       - name: Build with Gradle
         run: gradle clean test  
        
@@ -52,4 +50,4 @@ jobs:
         if: success() || failure()
         with:
           name: test-results
-          path: GradleReports/emailable-report.html
+          path: Gradle Reports/emailable-report.html
