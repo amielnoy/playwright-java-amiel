@@ -35,8 +35,17 @@ jobs:
       - name: Grant Permissions to gradlew
         run: chmod +x gradlew
       
+      - name: Set up virtual X11
+        run: sudo apt-get install xvfb
+      
+      - name: Start virtual frame buffer
+        run: Xvfb :19 -screen 0 1024x768x16 &
+      
+      - name: set display
+        run: export DISPLAY=:19
+      
       - name: Build with Gradle
-        run: gradle clean test xvfb-run  
+        run: gradle clean test  
        
       - name: Archive Rest Results
         uses: actions/upload-artifact@v3
