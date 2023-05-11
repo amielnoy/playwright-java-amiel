@@ -34,4 +34,4 @@ jobs:
           key: ${{ runner.os }}-ms-playwright-${{ hashFiles('**/build.gradle') }}
 
       - name: Run tests
-        run: ./gradlew clean test
+        run: sudo ./gradlew clean test
