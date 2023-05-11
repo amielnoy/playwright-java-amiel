@@ -36,7 +36,7 @@ jobs:
         run: chmod +x gradlew
       
       - name: Build with Gradle
-        run: gradle clean test -Dheadless=false 
+        run: gradle clean test xvfb-run  
        
       - name: Archive Rest Results
         uses: actions/upload-artifact@v3
