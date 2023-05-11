@@ -38,13 +38,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -x test
       
+          
       - name: GUI tests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: ./gradlew tests      
-      - name: Build with Gradle
-        run: gradle clean test  
-       
+          run: ./gradlew Tests       
+      
       - name: Archive Rest Results
         uses: actions/upload-artifact@v3
         if: success() || failure()
